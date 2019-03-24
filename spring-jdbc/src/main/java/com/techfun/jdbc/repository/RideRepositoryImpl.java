@@ -1,16 +1,18 @@
 package com.techfun.jdbc.repository;
 
 import java.sql.Connection;
-import java.sql.SQLException;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.springframework.stereotype.Repository;
 
 import com.techfun.jdbc.connectionhelper.ConnectionHelper;
 import com.techfun.jdbc.model.Ride;
 
+@Repository
 public class RideRepositoryImpl implements RideRepository {
-
+	
 	public void createRide(Ride ride) {
 
 		String insertTableSQL = "INSERT INTO ride(name,duration) values(?,?)";
