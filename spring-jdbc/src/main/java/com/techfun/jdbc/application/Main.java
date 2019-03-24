@@ -11,7 +11,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("applicationContext.xml");
-		RideService service = appContext.getBean("RideService", RideService.class);
+		RideService service = appContext.getBean("rideService", RideService.class);
 		// TODO Auto-generated method stub
 
 		testCreateRide(service);

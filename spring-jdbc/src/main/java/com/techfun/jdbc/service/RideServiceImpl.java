@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.techfun.jdbc.model.Ride;
 import com.techfun.jdbc.repository.RideRepositoryImpl;
 
-@Service
+@Service("rideService")
 public class RideServiceImpl implements RideService {
 
 	@Autowired

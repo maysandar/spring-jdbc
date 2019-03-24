@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.techfun.jdbc.connectionhelper.ConnectionHelper;
@@ -12,71 +14,31 @@ import com.techfun.jdbc.model.Ride;
 
 @Repository
 public class RideRepositoryImpl implements RideRepository {
-	
+
+	@Autowired
+	private JdbcTemplate jdbTemplate;
 	public void createRide(Ride ride) {
 
-		String insertTableSQL = "INSERT INTO ride(name,duration) values(?,?)";
-
-		try (Connection dbConnection = ConnectionHelper.getDBConnection();
-				PreparedStatement preparedStatement = dbConnection.prepareStatement(insertTableSQL)	){
-
-			preparedStatement.setString(1, ride.getName());
-			preparedStatement.setInt(2, ride.getDuration());
-
-			preparedStatement.executeUpdate();
-			System.out.println("Record is inserted!");
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-
-		}
+		jdbTemplate.update("INSERT INTO ride(name,duration) values(?,?)", ride.getName(), ride.getDuration());
 	}
-	
+
 	public void updateRide(Ride ride) {
 
-		String insertTableSQL = "UPDATE ride SET name = ?,duration = ? "
-                + " WHERE id = ?";
-
-
-		try (Connection dbConnection = ConnectionHelper.getDBConnection();
-				PreparedStatement preparedStatement = dbConnection.prepareStatement(insertTableSQL)	){
-
-			preparedStatement.setString(1, ride.getName());
-			preparedStatement.setInt(2, ride.getDuration());
-			preparedStatement.setInt(3, ride.getId());
-
-			preparedStatement.executeUpdate();
-			System.out.println("Record is updated successfully!");
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-
-		}
+		jdbTemplate.update("UPDATE ride SET name = ?,duration = ? \" + \" WHERE id = ?", ride.getName(), ride.getDuration(), ride.getId());
+		
 	}
-	
+
 	public void deleteRide(Ride ride) {
 
-		String deleteTableSQL = "DELETE from ride WHERE id = ?";
-
-
-		try (Connection dbConnection = ConnectionHelper.getDBConnection();
-			PreparedStatement preparedStatement = dbConnection.prepareStatement(deleteTableSQL)	){
-
-			preparedStatement.setInt(1, ride.getId());
-
-			preparedStatement.executeUpdate();
-			System.out.println("Record is deleted successfully!");
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-
-		} 
+		jdbTemplate.update("DELETE from ride WHERE id = ?", ride.getId());
 	}
-	
+
 	public void selectRide(Ride ride) {
 
 		String selectTableSQL = "select * from ride";
 
-
 		try (Connection dbConnection = ConnectionHelper.getDBConnection();
-			PreparedStatement preparedStatement = dbConnection.prepareStatement(selectTableSQL)	){
+				PreparedStatement preparedStatement = dbConnection.prepareStatement(selectTableSQL)) {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
@@ -84,7 +46,6 @@ public class RideRepositoryImpl implements RideRepository {
 				String id = rs.getString("id");
 				String name = rs.getString("name");
 				String duration = rs.getString("duration");
-				
 
 				System.out.println("Ride id : " + id);
 				System.out.println("Ride name : " + name);
@@ -95,6 +56,6 @@ public class RideRepositoryImpl implements RideRepository {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 
-		} 
+		}
 	}
 }
