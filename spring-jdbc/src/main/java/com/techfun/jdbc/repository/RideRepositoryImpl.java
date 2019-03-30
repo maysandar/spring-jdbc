@@ -17,6 +17,7 @@ public class RideRepositoryImpl implements RideRepository {
 	public void createRide(Ride ride) {
 
 		jdbTemplate.update("INSERT INTO ride(name,duration) values(?,?)", ride.getName(), ride.getDuration());
+		System.out.println("Test transaction");
 	}
 
 	public void updateRide(Ride ride) {

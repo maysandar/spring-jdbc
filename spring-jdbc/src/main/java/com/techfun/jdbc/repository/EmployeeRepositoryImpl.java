@@ -5,11 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.techfun.jdbc.model.Employee;
+import com.techfun.jdbc.model.Ride;
 import com.techfun.jdbc.repository.util.EmployeeRowMapper;
 
 @Repository("employeeRepository")
+@Transactional
 public class EmployeeRepositoryImpl implements EmployeeRepository {
 
 	@Autowired
@@ -42,4 +45,14 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 		return employees;
 	}
 
+	@Override
+	public void insertEmployeeAnRide(Employee employee, Ride ride) {
+		jdbTemplate.update("INSERT INTO employee(name,age,address) values(?,?,?)", employee.getName(),
+				employee.getAge(), employee.getAdress());
+		
+		jdbTemplate.update("INSERT INTO ride(name,duration) values(?,?)", ride.getName(), ride.getDuration());
+		
+	}
+
+	
 }

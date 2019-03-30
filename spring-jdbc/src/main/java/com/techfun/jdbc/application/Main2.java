@@ -6,7 +6,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.techfun.jdbc.model.Employee;
+import com.techfun.jdbc.model.Ride;
 import com.techfun.jdbc.service.EmployeeService;
+import com.techfun.jdbc.service.RideService;
 
 public class Main2 {
 
@@ -14,10 +16,10 @@ public class Main2 {
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 		EmployeeService service = appContext.getBean("employeeService", EmployeeService.class);
 		// TODO Auto-generated method stub
-
+		testInsertEmployeeandRide(service);
 		// testCreateEmployee(service);
 
-		testSelectEmployee(service);
+		//testSelectEmployee(service);
 	}
 
 	private static void testCreateEmployee(EmployeeService employeeService) {
@@ -57,6 +59,22 @@ public class Main2 {
 			System.out.println("Address" + emp.getAdress());
 			System.out.println("Age" + emp.getAge());
 		}
+		System.out.println("Process Successful completed!");
+	}
+	
+	private static void testInsertEmployeeandRide(EmployeeService employeeService) {
+		Employee employee = new Employee();
+		Ride ride = new Ride();
+		employee.setName("May Sandar");
+		employee.setAge(20);
+		;
+		employee.setAddress("151");
+		
+		ride.setName("May Dway");
+		ride.setDuration(15);
+		
+		employeeService.insertEmployeeAndRide(employee, ride);
+		
 		System.out.println("Process Successful completed!");
 	}
 

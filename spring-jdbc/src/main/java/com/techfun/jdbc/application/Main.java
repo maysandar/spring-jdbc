@@ -17,10 +17,10 @@ public class Main {
 		RideService service = appContext.getBean("rideService", RideService.class);
 		// TODO Auto-generated method stub
 
-		//testCreateRide(service);
+		testCreateRide(service);
 		 //testUpdateRide(service);
 		// testDeleteRide(ride);
-		 testSelectRide(service);
+		// testSelectRide(service);
 	}
 
 	private static void testCreateRide(RideService rideService) {
