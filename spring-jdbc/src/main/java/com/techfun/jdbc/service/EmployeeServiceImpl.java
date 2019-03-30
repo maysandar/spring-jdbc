@@ -4,25 +4,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.techfun.jdbc.model.Employee;
-import com.techfun.jdbc.model.Ride;
-import com.techfun.jdbc.repository.EmployeeRepositoryImpl;
+import com.techfun.jdbc.repository.EmployeeRepository;
 
 @Service("employeeService")
 public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Autowired
-	private EmployeeRepositoryImpl employeeRepositoryImpl;
+	private EmployeeRepository employeeRepository;
+	
 	@Override
 	public void createEmployee(Employee employee) {
-		employeeRepositoryImpl.createEmployee(employee);
+		employeeRepository.createEmployee(employee);
 	}
 
 	public void updateEmployee(Employee employee) {
-		employeeRepositoryImpl.updateEmployee(employee);
+		employeeRepository.updateEmployee(employee);
 	}
 
 	public void deleteEmployee(Employee employee) {
-		employeeRepositoryImpl.deleteEmployee(employee);
+		employeeRepository.deleteEmployee(employee);
 	}
 
 }

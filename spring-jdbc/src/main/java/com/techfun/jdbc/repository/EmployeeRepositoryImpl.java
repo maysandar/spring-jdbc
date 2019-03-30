@@ -6,11 +6,12 @@ import org.springframework.stereotype.Repository;
 
 import com.techfun.jdbc.model.Employee;
 
-@Repository
+@Repository("employeeRepository")
 public class EmployeeRepositoryImpl implements EmployeeRepository {
 	
 	@Autowired
 	private JdbcTemplate jdbTemplate;
+	
 	@Override
 	public void createEmployee(Employee employee) {
 
@@ -19,7 +20,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
 	public void updateEmployee(Employee employee) {
 
-		jdbTemplate.update("UPDATE employee SET name = ?,age = ?,address = ? \" + \" WHERE id = ?", employee.getName(), employee.getAge(), employee.getAdress(), employee.getId());
+		jdbTemplate.update("UPDATE employee SET name = ?,age = ?,address = ? WHERE id = ?", employee.getName(), employee.getAge(), employee.getAdress(), employee.getId());
 		
 	}
 
