@@ -1,8 +1,11 @@
 package com.techfun.jdbc.application;
 
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.techfun.jdbc.model.Employee;
 import com.techfun.jdbc.model.Ride;
 import com.techfun.jdbc.service.RideService;
 import com.techfun.jdbc.service.RideServiceImpl;
@@ -14,10 +17,10 @@ public class Main {
 		RideService service = appContext.getBean("rideService", RideService.class);
 		// TODO Auto-generated method stub
 
-		testCreateRide(service);
-		// testUpdateRide(ride);
+		//testCreateRide(service);
+		 //testUpdateRide(service);
 		// testDeleteRide(ride);
-		// testSelectRide(ride);
+		 testSelectRide(service);
 	}
 
 	private static void testCreateRide(RideService rideService) {
@@ -44,9 +47,14 @@ public class Main {
 		System.out.println("Process Successful completed!");
 	}
 
-	private static void testSelectRide(Ride ride) {
-		RideService rideService = new RideServiceImpl();
-		rideService.selectRide(ride);
+	private static void testSelectRide(RideService rideService) {
+		List<Ride> rideList = rideService.getRide();
+
+		for (Ride rl : rideList) {
+			System.out.println("ID" + rl.getId());
+			System.out.println("Name" + rl.getName());
+			System.out.println("Duration" + rl.getDuration());
+		}
 		System.out.println("Process Successful completed!");
 	}
 }

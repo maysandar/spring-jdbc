@@ -1,8 +1,11 @@
 package com.techfun.jdbc.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.techfun.jdbc.model.Employee;
 import com.techfun.jdbc.model.Ride;
 import com.techfun.jdbc.repository.RideRepositoryImpl;
 
@@ -24,7 +27,8 @@ public class RideServiceImpl implements RideService {
 		rideRepositoryImpl.deleteRide(ride);
 	}
 
-	public void selectRide(Ride ride) {
-		rideRepositoryImpl.selectRide(ride);
+	public List<Ride> getRide() {
+		List<Ride> rides = rideRepositoryImpl.selectRide();
+		return rides;
 	}
 }
