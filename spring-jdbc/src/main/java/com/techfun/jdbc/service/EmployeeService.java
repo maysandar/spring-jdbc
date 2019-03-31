@@ -11,4 +11,6 @@ public interface EmployeeService {
 	void deleteEmployee(Employee employee);
 	List<Employee> getEmployee();
 	void insertEmployeeAndRide(Employee employee, Ride ride);
+	Integer empCount();
+	Employee selectOneEmployee(int id);
 }

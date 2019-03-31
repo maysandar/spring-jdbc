@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,6 +53,17 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 		
 		jdbTemplate.update("INSERT INTO ride(name,duration) values(?,?)", ride.getName(), ride.getDuration());
 		
+	}
+	
+	public Integer empCount() {
+		int count  = jdbTemplate.queryForObject("SELECT count(*) FROM employee", Integer.class); // for select count
+		return count;
+		
+	}
+	
+	public Employee selectOneEmployee(int id) {
+		Employee employee1 = jdbTemplate.queryForObject("SELECT * FROM employee WHERE id= ?" ,new EmployeeRowMapper(), id);
+		return employee1;
 	}
 
 	

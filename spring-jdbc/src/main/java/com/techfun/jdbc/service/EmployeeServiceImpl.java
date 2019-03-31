@@ -37,4 +37,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public void insertEmployeeAndRide(Employee employee, Ride ride) {
 		employeeRepository.insertEmployeeAnRide(employee, ride);		
 	}
+	
+	public Integer empCount() {
+		int count = employeeRepository.empCount();
+		return count;
+	}
+	
+	public Employee selectOneEmployee(int id) {
+		Employee employee1 = employeeRepository.selectOneEmployee(id);
+		return employee1;
+	}
 }

@@ -16,10 +16,12 @@ public class Main2 {
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 		EmployeeService service = appContext.getBean("employeeService", EmployeeService.class);
 		// TODO Auto-generated method stub
-		testInsertEmployeeandRide(service);
+		//testInsertEmployeeandRide(service);
 		// testCreateEmployee(service);
 
 		//testSelectEmployee(service);
+		//testCountEmployee(service);
+		testSelectOneEmployee(service);
 	}
 
 	private static void testCreateEmployee(EmployeeService employeeService) {
@@ -75,6 +77,21 @@ public class Main2 {
 		
 		employeeService.insertEmployeeAndRide(employee, ride);
 		
+		System.out.println("Process Successful completed!");
+	}
+	
+	private static void testCountEmployee(EmployeeService employeeService) {
+		int count = employeeService.empCount();
+		System.out.println(count);
+		System.out.println("Process Successful completed!");
+	}
+	
+	private static void testSelectOneEmployee(EmployeeService employeeService) {
+		
+		Employee employee = employeeService.selectOneEmployee(13);
+		System.out.println(employee.getName());
+		System.out.println(employee.getAdress());
+		System.out.println(employee.getAge());
 		System.out.println("Process Successful completed!");
 	}
 

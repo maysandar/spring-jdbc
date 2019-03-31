@@ -10,4 +10,6 @@ public interface RideService {
 	void updateRide(Ride ride);
 	void deleteRide(Ride ride);
 	List<Ride> getRide();
+	Integer rideCount();
+	Ride selectOneRide(int id);
 }

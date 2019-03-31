@@ -11,5 +11,6 @@ public interface EmployeeRepository {
 	void deleteEmployee(Employee employee);
 	List<Employee> getEmployee();
 	void insertEmployeeAnRide(Employee employee,Ride ride);
-	
+	Integer empCount();
+	Employee selectOneEmployee(int id);
 }

@@ -7,6 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.techfun.jdbc.model.Employee;
 import com.techfun.jdbc.model.Ride;
+import com.techfun.jdbc.service.EmployeeService;
 import com.techfun.jdbc.service.RideService;
 import com.techfun.jdbc.service.RideServiceImpl;
 
@@ -17,10 +18,12 @@ public class Main {
 		RideService service = appContext.getBean("rideService", RideService.class);
 		// TODO Auto-generated method stub
 
-		testCreateRide(service);
+		//testCreateRide(service);
 		 //testUpdateRide(service);
 		// testDeleteRide(ride);
 		// testSelectRide(service);
+		//testCountRide(service);
+		testSelectOneRide(service);
 	}
 
 	private static void testCreateRide(RideService rideService) {
@@ -57,4 +60,19 @@ public class Main {
 		}
 		System.out.println("Process Successful completed!");
 	}
+	
+	private static void testCountRide(RideService rideService) {
+		int count = rideService.rideCount();
+		System.out.println(count);
+		System.out.println("Process Successful completed!");
+	}
+	
+	private static void testSelectOneRide(RideService rideService) {
+		
+		Ride ride = rideService.selectOneRide(11);
+		System.out.println(ride.getName());
+		System.out.println(ride.getDuration());
+		System.out.println("Process Successful completed!");
+	}
+	
 }

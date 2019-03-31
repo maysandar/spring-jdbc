@@ -31,4 +31,14 @@ public class RideServiceImpl implements RideService {
 		List<Ride> rides = rideRepositoryImpl.selectRide();
 		return rides;
 	}
+	
+	public Integer rideCount() {
+		int count = rideRepositoryImpl.rideCount();
+		return count;
+	}
+	
+	public Ride selectOneRide(int id) {
+		Ride ride1 = rideRepositoryImpl.selectOneRide(id);
+		return ride1;
+	}
 }

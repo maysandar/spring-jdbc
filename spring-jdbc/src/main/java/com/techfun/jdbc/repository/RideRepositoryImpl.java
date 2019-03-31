@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.techfun.jdbc.model.Employee;
 import com.techfun.jdbc.model.Ride;
+import com.techfun.jdbc.repository.util.EmployeeRowMapper;
 import com.techfun.jdbc.repository.util.RideRowMapper;
 
 @Repository
@@ -36,6 +38,16 @@ public class RideRepositoryImpl implements RideRepository {
 		// TODO Auto-generated method stub
 		List<Ride> rides = jdbTemplate.query("SELECT * FROM ride", new RideRowMapper());
 		return rides;
+	}
+	
+	public Integer rideCount() {
+		int count = jdbTemplate.queryForObject("SELECT count(*) FROM ride", Integer.class);
+		return count;
+	}
+	
+	public Ride selectOneRide(int id) {
+		Ride ride1 = jdbTemplate.queryForObject("SELECT * FROM ride WHERE id= ?" ,new RideRowMapper(), id);
+		return ride1;
 	}
 
 }
